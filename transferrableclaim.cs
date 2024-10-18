@@ -30,7 +30,7 @@ namespace PROG_2B_POE_Part_2
         }
         public string DisplayClaim()
         {
-            return $"{ClaimId}, {ClaimantName}, {DateLogged:yyyy-MM-dd}, {Status}";
+            return $"{ClaimId.ToString()}, {ClaimantName}, {DateLogged:yyyy-MM-dd}, {Status}";
         }
         public decimal amountOwed()
         {

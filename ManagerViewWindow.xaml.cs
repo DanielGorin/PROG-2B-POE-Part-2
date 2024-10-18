@@ -4,6 +4,8 @@ using PROG_2B_POE_Part_2.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,31 +25,51 @@ namespace PROG_2B_POE_Part_2
     public partial class ManagerViewWindow : Window
     {
         private readonly AppDbContext _context;
+        List<transferrableclaim> clams = new List<transferrableclaim>();
         public ManagerViewWindow(List<transferrableclaim> sent)
         {
             InitializeComponent();
-            List<transferrableclaim> clams = new List<transferrableclaim>();
             clams = sent;
-            //foreach (var transferrableclaim in clams)
-            //{
-            //    ClaimsListBox.Items.Add(transferrableclaim.DisplayClaim());
-            //}
-            var firstClaim = clams.FirstOrDefault();
-            MessageBox.Show($"The Claimant Name of the first entry is: {firstClaim.ClaimantName}", "First Claimant Name", MessageBoxButton.OK, MessageBoxImage.Information);//test to see that the database is being accessed correctly
-            //LoadClaims();
+            foreach (var j in clams)
+            {
+                if (j.Status == "Pending")
+                {
+                    ClaimsListBox.Items.Add(j.DisplayClaim());
+                }
+            }
         }
-
-        private void LoadClaims()
-        {
-        var claimslist = _context.Claims.ToList();
-
-            // Set the ListBox's ItemsSource to the ClaimantNames or another property
-            ClaimsListBox.ItemsSource = claimslist;//.Select(c => c.ClaimantName).ToList();
-        }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void ClaimsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string sel = "";
+            string subsel = "";
+            int com = 0;
+            int keynum = 0;
+            if (ClaimsListBox.SelectedItem != null)
+            {
+                sel = ClaimsListBox.SelectedItem.ToString();
+                com = sel.IndexOf(",");
+                subsel = sel.Substring(0, com);
+                keynum = int.Parse(subsel);
+            }
+            Populate(clams[keynum-1]);
+
+        }
+
+        public void Populate(transferrableclaim claim)
+        {
+            ClaimIDTextBox.Text = claim.ClaimId.ToString();
+            ClaimantNameTextBox.Text = claim.ClaimantName;
+            HourlyRateTextBox.Text = claim.HourlyRate.ToString("F2"); // Format to 2 decimal places
+            HoursWorkedTextBox.Text = claim.HoursWorked.ToString();
+            DateTextBox.Text = claim.DateLogged.ToString("yyyy-MM-dd"); // Format the date
+            CommentTextBox.Text = claim.ClaimantComments;
+            StatusTextBox.Text = claim.Status;
+            PayemntTextBox.Text = claim.amountOwed().ToString("F2"); // Amount owed, formatted to 2 decimal places
         }
     }
 }
