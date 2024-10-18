@@ -22,12 +22,18 @@ namespace PROG_2B_POE_Part_2
     public partial class LecturerCreateWindow : Window
     {
         private readonly AppDbContext _context;
+        int nextnum = 0;
         List<transferrableclaim> clams = new List<transferrableclaim>();
         public LecturerCreateWindow(List<transferrableclaim> sent)
         {
             InitializeComponent();
             clams = sent;
+            nextnum = clams.Count + 1;
+            IDTextBox.Text = nextnum.ToString();
+            DateTextBox.Text = DateOnly.FromDateTime(DateTime.Now).ToString();
+
         }
+
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -53,7 +59,33 @@ namespace PROG_2B_POE_Part_2
         {
             //Creates a Claim
             //----------------------------------------------------------------------------------------------------------------------------------------------
+            //Checks that all the valid fields are full
+            //---------------------------------------------------------
+            if (TitleTextBox.Text == "") 
+            {
+                MessageBox.Show("Please add a title to your claim.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            if (decimal.TryParse(RateTextBox.Text,out decimal rateres))
+            {
 
+            }
+            else
+            {
+                MessageBox.Show("Please add a valid hourly rate.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            if (int.TryParse(HoursWorkedTextBox.Text, out int hourres))
+            {
+
+            }
+            else
+            {
+                MessageBox.Show("Please add a valid number of hours worked", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            if (CommentTextBox.Text == "")
+            {
+                MessageBox.Show("Please add a comment to your claim.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            //---------------------------------------------------------
             //----------------------------------------------------------------------------------------------------------------------------------------------
         }
     }

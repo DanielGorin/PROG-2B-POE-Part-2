@@ -30,12 +30,20 @@ namespace PROG_2B_POE_Part_2
         {
             InitializeComponent();
             clams = sent;
-            LoadList("Pending");
+            ddLoadList();
+            DenyButton.Visibility = Visibility.Collapsed;
+            AcceptButton.Visibility = Visibility.Collapsed;
+            JustificationTextBox.Visibility = Visibility.Collapsed;
+            JustificationLabel.Visibility = Visibility.Collapsed;
         }
 
         int keynum = 0;
         private void ClaimsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            DenyButton.Visibility = Visibility.Collapsed;
+            AcceptButton.Visibility = Visibility.Collapsed;
+            JustificationTextBox.Visibility = Visibility.Collapsed;
+            JustificationLabel.Visibility = Visibility.Collapsed;
             string sel = "";
             string subsel = "";
             int com = 0;
@@ -47,6 +55,13 @@ namespace PROG_2B_POE_Part_2
                 keynum = int.Parse(subsel);
             }
             Populate(clams[keynum-1]);
+            if (clams[keynum-1].Status == "Pending")
+            {
+                DenyButton.Visibility = Visibility.Visible;
+                AcceptButton.Visibility = Visibility.Visible;
+                JustificationTextBox.Visibility = Visibility.Visible;
+                JustificationLabel.Visibility = Visibility.Visible;
+            }
 
         }
 
@@ -63,9 +78,23 @@ namespace PROG_2B_POE_Part_2
         }
         public void LoadList(string tus)
         {
+            ClaimsListBox.Items.Add("");
+            ClaimsListBox.Items.Clear();
             foreach (var j in clams)
             {
                 if (j.Status == tus)
+                {
+                    ClaimsListBox.Items.Add(j.DisplayClaim());
+                }
+            }
+        }
+        public void ddLoadList()
+        {
+            ClaimsListBox.Items.Add("");
+            ClaimsListBox.Items.Clear();
+            foreach (var j in clams)
+            {
+                if (j.Status == ListCatagoryDropDown.Text)
                 {
                     ClaimsListBox.Items.Add(j.DisplayClaim());
                 }
@@ -75,7 +104,7 @@ namespace PROG_2B_POE_Part_2
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             clams[keynum - 1].Status = "Accepted";
-            LoadList("Pending");
+            ddLoadList();
         }
 
         private void DenyButton_Click(object sender, RoutedEventArgs e)
@@ -87,13 +116,24 @@ namespace PROG_2B_POE_Part_2
             else
             {
                 clams[keynum - 1].Status = "Denied";
-                LoadList("Pending");
+                ddLoadList();
             }
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void ListCatagoryDropDown_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //do nothing
+            //MessageBox.Show(ListCatagoryDropDown.Text, "Denial Required!", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            ddLoadList();
         }
     }
 }

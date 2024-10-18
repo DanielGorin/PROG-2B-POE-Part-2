@@ -17,19 +17,19 @@
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="1" Grid.Row="1" Background="#FF322D71">
             <Label x:Name="TitleLabel" Content="Title:" HorizontalAlignment="Left" Margin="55,0,0,0" Foreground="White"/>
-            <TextBox TextWrapping="Wrap" Text=" " Width="250" HorizontalAlignment="Left" Margin="55,0,0,0"/>
+            <TextBox x:Name="TitleTextBox" TextWrapping="Wrap" Text=" " Width="250" HorizontalAlignment="Left" Margin="55,0,0,0"/>
             <Label x:Name="IDLabel" Content="ID:" HorizontalAlignment="Left" Margin="55,0,0,0" Foreground="White"/>
-            <TextBox TextWrapping="Wrap" Text=" " Width="250" HorizontalAlignment="Left" Margin="55,0,0,0" Background="#FF757575"/>
+            <TextBox x:Name="IDTextBox" TextWrapping="Wrap" Text=" " Width="250" HorizontalAlignment="Left" Margin="55,0,0,0" Background="#FF757575" IsReadOnly="True"/>
             <Label x:Name="HourlyRateLabel" Content="Hourly Rate:" HorizontalAlignment="Left" Margin="55,0,0,0" Foreground="White"/>
-            <TextBox TextWrapping="Wrap" Text=" " Width="250" HorizontalAlignment="Left" Margin="55,0,0,0"/>
+            <TextBox x:Name="RateTextBox" TextWrapping="Wrap" Text=" " Width="250" HorizontalAlignment="Left" Margin="55,0,0,0"/>
             <Label x:Name="HoursWorkedLabel" Content="Hours Worked:" HorizontalAlignment="Left" Margin="55,0,0,0" Foreground="White"/>
-            <TextBox TextWrapping="Wrap" Text=" " Width="250" HorizontalAlignment="Left" Margin="55,0,0,0"/>
+            <TextBox x:Name="HoursWorkedTextBox" TextWrapping="Wrap" Text=" " Width="250" HorizontalAlignment="Left" Margin="55,0,0,0"/>
             <Label x:Name="TotalPayementLabel" Content="Total Payment:" HorizontalAlignment="Left" Margin="55,0,0,0" Foreground="White"/>
-            <TextBox TextWrapping="Wrap" Text=" " Width="250" HorizontalAlignment="Left" Margin="55,0,0,0" Background="#FF757575"/>
+            <TextBox x:Name="PayemntTextbox" TextWrapping="Wrap" Text=" " Width="250" HorizontalAlignment="Left" Margin="55,0,0,0" Background="#FF757575" IsReadOnly="True"/>
             <Label x:Name="DateLoggedLabel" Content="Date Logged:" HorizontalAlignment="Left" Margin="55,0,0,0" Foreground="White"/>
-            <TextBox x:Name="DateTextbox" TextWrapping="Wrap" Text=" " Width="250" HorizontalAlignment="Left" Margin="55,0,0,0" Background="#FF757575"/>
+            <TextBox x:Name="DateTextBox" TextWrapping="Wrap" Text=" " Width="250" HorizontalAlignment="Left" Margin="55,0,0,0" Background="#FF757575" IsReadOnly="True"/>
             <Label Content="Comments:" HorizontalAlignment="Left" Margin="55,0,0,0" Foreground="White"/>
-            <TextBox TextWrapping="Wrap" Text=" " Width="250" Height="54" VerticalScrollBarVisibility="Visible" HorizontalAlignment="Left" Margin="55,0,0,0"/>
+            <TextBox x:Name="CommentTextBox" TextWrapping="Wrap" Text=" " Width="250" Height="54" VerticalScrollBarVisibility="Visible" HorizontalAlignment="Left" Margin="55,0,0,0"/>
             <Button Content="Upload File" Width="250" Margin="55,15,0,0" HorizontalAlignment="Left" Click="Button_Click_1"/>
         </StackPanel>
         <StackPanel Grid.Column="1" Background="#FF10101B">

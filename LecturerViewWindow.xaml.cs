@@ -20,20 +20,23 @@ namespace PROG_2B_POE_Part_2
     /// </summary>
     public partial class LecturerViewWindow : Window
     {
+        //List ofr holding the claims databsse
         List<transferrableclaim> clams = new List<transferrableclaim>();
+        //Startup of the Lecturer View WIndow
+        //--------------------------------------------------------------------------
         public LecturerViewWindow(List<transferrableclaim> sent)
         {
             InitializeComponent();
             clams = sent;
             foreach (var j in clams)
-            {
-                if (j.Status == "Pending")
-                {
-                    ClaimsListBox.Items.Add(j.DisplayClaim());
-                }
-            }
-        }
+            ddLoadList();
+            downlloadbutton.Visibility = Visibility.Collapsed;
+            JustificationTextBox.Visibility = Visibility.Collapsed;
+            JustificationTitle.Visibility = Visibility.Collapsed;
 
+        }
+        //--------------------------------------------------------------------------
+        int keynum = 0;
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             //Naviagtes to the LecturerCreateWindow
@@ -54,6 +57,9 @@ namespace PROG_2B_POE_Part_2
 
         private void ClaimsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            downlloadbutton.Visibility = Visibility.Collapsed;
+            JustificationTextBox.Visibility = Visibility.Collapsed;
+            JustificationTitle.Visibility = Visibility.Collapsed;
             string sel = "";
             string subsel = "";
             int com = 0;
@@ -66,6 +72,12 @@ namespace PROG_2B_POE_Part_2
                 keynum = int.Parse(subsel);
             }
             Populate(clams[keynum - 1]);
+            if (clams[keynum - 1].Status == "Denied")
+            {
+                JustificationTextBox.Visibility = Visibility.Visible;
+                JustificationTitle.Visibility = Visibility.Visible;
+            }
+            downlloadbutton.Visibility = Visibility.Visible;
         }
         public void Populate(transferrableclaim claim)
         {
@@ -76,6 +88,35 @@ namespace PROG_2B_POE_Part_2
             CommentTextBox.Text = claim.ClaimantComments;
             StatusTextBox.Text = claim.Status;
             PayemntTextBox.Text = claim.amountOwed().ToString("F2"); // Amount owed, formatted to 2 decimal places
+        }
+        public void LoadList(string tus)
+        {
+            ClaimsListBox.Items.Add("");
+            ClaimsListBox.Items.Clear();
+            foreach (var j in clams)
+            {
+                if (j.Status == tus)
+                {
+                    ClaimsListBox.Items.Add(j.DisplayClaim());
+                }
+            }
+        }
+        public void ddLoadList()
+        {
+            ClaimsListBox.Items.Add("");
+            ClaimsListBox.Items.Clear();
+            foreach (var j in clams)
+            {
+                if (j.Status == ListCatagoryDropDown.Text)
+                {
+                    ClaimsListBox.Items.Add(j.DisplayClaim());
+                }
+            }
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            ddLoadList();
         }
     }
 }

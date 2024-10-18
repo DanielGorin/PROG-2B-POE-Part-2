@@ -37,7 +37,7 @@
             <TextBox x:Name="CommentTextBox" TextWrapping="Wrap" Text=" " Width="250" Height="54" VerticalScrollBarVisibility="Visible" HorizontalAlignment="Left" Margin="55,0,0,0" IsReadOnly="True"/>
             <Label Content="Status:" HorizontalAlignment="Left" Margin="55,0,0,0" Foreground="White"/>
             <TextBox x:Name="StatusTextBox" TextWrapping="Wrap" Text=" " Width="250" HorizontalAlignment="Left" Margin="55,0,0,0" IsReadOnly="True"/>
-            <Label Content="Justification:" HorizontalAlignment="Left" Margin="55,0,0,0" Foreground="White"/>
+            <Label x:Name="JustificationLabel" Content="Justification:" HorizontalAlignment="Left" Margin="55,0,0,0" Foreground="White"/>
             <TextBox x:Name="JustificationTextBox" TextWrapping="Wrap" Text=" " Width="250" Height="50" VerticalScrollBarVisibility="Visible" HorizontalAlignment="Left" Margin="55,0,0,0"/>
             <Button x:Name="DownloadButton" Content="Download FIles" Width="250" Margin="55,15,0,0" HorizontalAlignment="Left" Click="Button_Click_1"/>
         </StackPanel>
@@ -50,10 +50,13 @@
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="1" Background="#FF322D71">
             <Rectangle Height="15" Width="100"/>
-            <ComboBox x:Name="ListCatagoryDropDown" Width="120" SelectedIndex="0">
+            <ComboBox x:Name="ListCatagoryDropDown" Width="120" SelectedIndex="0" SelectionChanged="ListCatagoryDropDown_SelectionChanged">
                 <ComboBoxItem Content="Pending"/>
+                <ComboBoxItem Content="Accepted"/>
+                <ComboBoxItem Content="Denied"/>
             </ComboBox>
             <Rectangle Height="15" Width="100"/>
+            <Button Content="Search" HorizontalAlignment="Center" Width="50" Click="Button_Click_2"/>
             <Label x:Name="ClaimsLabel" Content="Claims:" HorizontalAlignment="Center" Foreground="White" FontSize="16"/>
             <Rectangle Height="5" Width="100"/>
             <ListBox x:Name="ClaimsListBox" Height="490" d:ItemsSource="{d:SampleData ItemCount=5}" HorizontalAlignment="Center" Width="275" SelectionChanged="ClaimsListBox_SelectionChanged"/>
