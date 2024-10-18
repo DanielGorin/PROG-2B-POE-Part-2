@@ -5,8 +5,35 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PROG_2B_POE_Part_2"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
+               Title="login Window" Height="366" Width="350">
+    <Grid Background="#FF322D71" Height="333">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="75"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="75"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="1" Grid.Row="1" Background="#FF322D71">
+            <Label x:Name="UniversityIDLabel" Content="University ID:" HorizontalAlignment="Center" Foreground="White" FontSize="16"/>
+            <TextBox x:Name="UniversityIDInput" TextWrapping="Wrap" Text="TextBox" Width="120"/>
+            <Rectangle Height="15" Width="100"/>
+            <Label x:Name="PasswordLabel" Content="Password:" HorizontalAlignment="Center" Foreground="White" FontSize="16"/>
+            <TextBox x:Name="PasswordInput" TextWrapping="Wrap" Text="TextBox" Width="120"/>
+            <Rectangle Height="25" Width="100"/>
+            <Button x:Name="LoginButtonh" Content="Log in" Width="70" Click="LoginButtonh_Click" FontSize="16"/>
+            <Rectangle Height="20" Width="100"/>
+            <Button x:Name="RegisterButton" Content="Register" Width="70" Click="RegisterButton_Click" FontSize="16"/>
+            <Button x:Name="TempLecButton" Content="Lecturer" Click="TempLecButton_Click"/>
+            <Button x:Name="TempManagerButton" Content="Manager" Click="TempManagerButton_Click"/>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Background="#FF10101B">
+            <Label x:Name="CSMSTitle" Content="Welcome" Foreground="White" HorizontalAlignment="Center" FontSize="36" FontWeight="Bold"/>
+        </StackPanel>
+        <StackPanel Background="#FF10101B">
+            <Label Content="CMCS" Foreground="White" FontWeight="Bold" FontSize="24" HorizontalAlignment="Left" Margin="0,15,0,0"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Background="#FF10101B"/>
     </Grid>
 </Window>
