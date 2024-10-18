@@ -1,4 +1,5 @@
-﻿using PROG_2B_POE_Part_2.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using PROG_2B_POE_Part_2.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -117,6 +118,16 @@ namespace PROG_2B_POE_Part_2
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             ddLoadList();
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            //Navigates back to the LogIn Window
+            //----------------------------------------------------------------------------------------------------------------------------------------------
+            MainWindow objViewWindow = new MainWindow();
+            this.Hide();
+            objViewWindow.Visibility=Visibility.Visible;
+            //-----------------------
         }
     }
 }

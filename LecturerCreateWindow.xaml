@@ -21,9 +21,9 @@
             <Label x:Name="IDLabel" Content="ID:" HorizontalAlignment="Left" Margin="55,0,0,0" Foreground="White"/>
             <TextBox x:Name="IDTextBox" TextWrapping="Wrap" Text=" " Width="250" HorizontalAlignment="Left" Margin="55,0,0,0" Background="#FF757575" IsReadOnly="True"/>
             <Label x:Name="HourlyRateLabel" Content="Hourly Rate:" HorizontalAlignment="Left" Margin="55,0,0,0" Foreground="White"/>
-            <TextBox x:Name="RateTextBox" TextWrapping="Wrap" Text=" " Width="250" HorizontalAlignment="Left" Margin="55,0,0,0"/>
+            <TextBox x:Name="RateTextBox" TextWrapping="Wrap" Text="0.00" Width="250" HorizontalAlignment="Left" Margin="55,0,0,0" TextChanged="RateTextBox_TextChanged"/>
             <Label x:Name="HoursWorkedLabel" Content="Hours Worked:" HorizontalAlignment="Left" Margin="55,0,0,0" Foreground="White"/>
-            <TextBox x:Name="HoursWorkedTextBox" TextWrapping="Wrap" Text=" " Width="250" HorizontalAlignment="Left" Margin="55,0,0,0"/>
+            <TextBox x:Name="HWTextBox" TextWrapping="Wrap" Text="0" Width="248" InputScope="NumberFullWidth" HorizontalAlignment="Left" Margin="55,0,0,0" TextChanged="HWTextBox_TextChanged"/>
             <Label x:Name="TotalPayementLabel" Content="Total Payment:" HorizontalAlignment="Left" Margin="55,0,0,0" Foreground="White"/>
             <TextBox x:Name="PayemntTextbox" TextWrapping="Wrap" Text=" " Width="250" HorizontalAlignment="Left" Margin="55,0,0,0" Background="#FF757575" IsReadOnly="True"/>
             <Label x:Name="DateLoggedLabel" Content="Date Logged:" HorizontalAlignment="Left" Margin="55,0,0,0" Foreground="White"/>

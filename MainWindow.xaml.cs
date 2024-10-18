@@ -45,7 +45,7 @@ namespace PROG_2B_POE_Part_2
                                        claim.ClaimantComments, claim.DateLogged, claim.UploadedFiles, claim.Status);
                 claimdata.Add(claimInfo);
             }
-    
+            MessageBox.Show("As login functionality does not wokr please use the temporary buttons at the bottom. Lecture will log you in as john Doe", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
 
@@ -74,7 +74,7 @@ namespace PROG_2B_POE_Part_2
             //This button is temporary used to naviagte tot he lecturer window before login and registration functinality has been added
             //------------------------------------------------------------------------------------------------------------------------------------------------
             LecturerViewWindow objViewWindow = new LecturerViewWindow(claimdata);
-            this.Hide();
+            this.Visibility=Visibility.Collapsed;
             objViewWindow.Show();
             //------------------------------------------------------------------------------------------------------------------------------------------------
         }
