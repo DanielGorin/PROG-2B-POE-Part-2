@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PROG_2B_POE_Part_2.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,16 +20,26 @@ namespace PROG_2B_POE_Part_2
     /// </summary>
     public partial class LecturerViewWindow : Window
     {
-        public LecturerViewWindow()
+        private readonly AppDbContext _context;
+        public LecturerViewWindow(AppDbContext context)
         {
             InitializeComponent();
+            _context = context; // Store the DbContext
+            if (_context == null)
+            {
+                MessageBox.Show("Database context is null!", "Null Context", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            else
+            {
+                MessageBox.Show("Database context is initialized.", "Context Initialized", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             //Naviagtes to the LecturerCreateWindow
             //----------------------------------------------------------------------------------------------------------------------------------------------
-            LecturerCreateWindow objViewWindow = new LecturerCreateWindow();
+            LecturerCreateWindow objViewWindow = new LecturerCreateWindow(_context);
             this.Hide();
             objViewWindow.Show();
             //----------------------------------------------------------------------------------------------------------------------------------------------

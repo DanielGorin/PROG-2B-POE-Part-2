@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using PROG_2B_POE_Part_2.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,16 +21,18 @@ namespace PROG_2B_POE_Part_2
     /// </summary>
     public partial class LecturerCreateWindow : Window
     {
-        public LecturerCreateWindow()
+        private readonly AppDbContext _context;
+        public LecturerCreateWindow(AppDbContext context)
         {
             InitializeComponent();
+            _context = context; // Store the DbContext
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             //Naviagtes out of the create claim window without creating a claim back to the LecturerViewWindow
             //----------------------------------------------------------------------------------------------------------------------------------------------
-            LecturerViewWindow objViewWindow = new LecturerViewWindow();
+            LecturerViewWindow objViewWindow = new LecturerViewWindow(_context);
             this.Hide();
             objViewWindow.Show();
             //----------------------------------------------------------------------------------------------------------------------------------------------

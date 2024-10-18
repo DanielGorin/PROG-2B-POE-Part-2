@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PROG_2B_POE_Part_2.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,11 @@ namespace PROG_2B_POE_Part_2
     /// </summary>
     public partial class RegistrationWindow : Window
     {
-        public RegistrationWindow()
+        private readonly AppDbContext _context;
+        public RegistrationWindow(AppDbContext context)
         {
             InitializeComponent();
+            _context = context;
         }
 
         private void CreateAcountButton_Click(object sender, RoutedEventArgs e)
@@ -36,7 +39,7 @@ namespace PROG_2B_POE_Part_2
         {
             //Navigates back to the LogIn Window
             //----------------------------------------------------------------------------------------------------------------------------------------------
-            MainWindow objViewWindow = new MainWindow();
+            MainWindow objViewWindow = new MainWindow(_context);
             this.Hide();
             objViewWindow.Show();
             //----------------------------------------------------------------------------------------------------------------------------------------------
