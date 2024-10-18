@@ -1,4 +1,6 @@
-﻿using PROG_2B_POE_Part_2.Data;
+﻿using Microsoft.EntityFrameworkCore.SqlServer.Query.Internal;
+using PROG_2B_POE_Part_2.Data;
+using PROG_2B_POE_Part_2.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,18 +23,17 @@ namespace PROG_2B_POE_Part_2
     public partial class ManagerViewWindow : Window
     {
         private readonly AppDbContext _context;
-        public ManagerViewWindow(AppDbContext context)
+        public ManagerViewWindow(List<transferrableclaim> sent)
         {
             InitializeComponent();
-            _context = context; //Store the DbContext
-            if (context == null)
-            {
-                MessageBox.Show("Database context is null!", "Null Context", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-            else
-            {
-                MessageBox.Show("Database context is initialized.", "Context Initialized", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
+            List<transferrableclaim> clams = new List<transferrableclaim>();
+            clams = sent;
+            //foreach (var transferrableclaim in clams)
+            //{
+            //    ClaimsListBox.Items.Add(transferrableclaim.DisplayClaim());
+            //}
+            var firstClaim = clams.FirstOrDefault();
+            MessageBox.Show($"The Claimant Name of the first entry is: {firstClaim.ClaimantName}", "First Claimant Name", MessageBoxButton.OK, MessageBoxImage.Information);//test to see that the database is being accessed correctly
             //LoadClaims();
         }
 

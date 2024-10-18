@@ -1,4 +1,5 @@
 ﻿using PROG_2B_POE_Part_2.Data;
+using PROG_2B_POE_Part_2.Models;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -15,45 +16,41 @@ namespace PROG_2B_POE_Part_2
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    /// 
     public partial class MainWindow : Window
     {
+        List<transferrableclaim> claimdata = new List<transferrableclaim>();
+        string x = "win";
         private readonly AppDbContext _context;
         // Default constructor
         public MainWindow()
         {
             InitializeComponent();
+            this.Hide();
         }
 
         // Parameterized constructor
         public MainWindow(AppDbContext context) : this() // Calls the default constructor
         {
+            InitializeComponent();
+            //takes the data from teh database and puts into a list of type Claims
+            List<Claims> clams = new List<Claims>();
             _context = context; // Store the DbContext
-            if (_context == null)
+            clams = _context.Claims.ToList();    
+            //creates a list of type transferableclaism
+            //pupulates ther transferable claimslist
+            foreach (var claim in clams)
             {
-                MessageBox.Show("Database context is null!", "Null Context", MessageBoxButton.OK, MessageBoxImage.Warning);
+                var claimInfo = new transferrableclaim();
+                claimInfo.CreateClaim(claim.ClaimId, claim.ClaimantName, claim.HourlyRate, claim.HoursWorked,
+                                       claim.ClaimantComments, claim.DateLogged, claim.UploadedFiles, claim.Status);
+                claimdata.Add(claimInfo);
             }
-            else
-            {
-
-                //int x = _context.Claims.Count();
-                //MessageBox.Show(x.ToString()+" Database context is initialized.", "Context Initialized", MessageBoxButton.OK, MessageBoxImage.Information);
-                MessageBox.Show(" Database context is initialized.", "Context Initialized", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-            // Check if there are any claims in the database
-            var firstClaim = _context.Claims.FirstOrDefault();
-
-            // If there is no claim in the database, show a message saying it's empty
-            if (firstClaim == null)
-            {
-                MessageBox.Show("No claims found in the database.", "Database Empty", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-            else
-            {
-                // Show the claimant name of the first entry
-                MessageBox.Show($"The Claimant Name of the first entry is: {firstClaim.ClaimantName}", "First Claimant Name", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
+            //
+            var firstClam = claimdata.FirstOrDefault();
+            MessageBox.Show($"The Claimant Name of the first entry is: {firstClam.ClaimantName}", "First Claimant Name", MessageBoxButton.OK, MessageBoxImage.Information);//test to see that the database is being accessed correctly
+            //x = "success";        
         }
-
 
 
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
@@ -91,9 +88,15 @@ namespace PROG_2B_POE_Part_2
             //Navigates to the ManagerViewWindow
             //This button is temporary used to naviagte tot he lecturer window before login and registration functinality has been added
             //------------------------------------------------------------------------------------------------------------------------------------------------
-            ManagerViewWindow objViewWindow = new ManagerViewWindow(_context);
+            //var firstClam = claimdata.FirstOrDefault();
+            //MessageBox.Show($"The Claimant Name of the first entry is: {firstClam.ClaimantName}", "First Claimant Name", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show($"The Claimant Name of the first entry is: {x}", "First Claimant Name", MessageBoxButton.OK, MessageBoxImage.Information);
+            ManagerViewWindow objViewWindow = new ManagerViewWindow(claimdata);
             this.Hide();
             objViewWindow.Show();
+            //var managerWindow = ((App)Application.Current)._serviceProvider.GetService<ManagerViewWindow>();
+            //this.Hide();
+            //managerWindow.Show();
             //------------------------------------------------------------------------------------------------------------------------------------------------
         }
     }
