@@ -22,17 +22,18 @@ namespace PROG_2B_POE_Part_2
     public partial class LecturerCreateWindow : Window
     {
         private readonly AppDbContext _context;
-        public LecturerCreateWindow(AppDbContext context)
+        List<transferrableclaim> clams = new List<transferrableclaim>();
+        public LecturerCreateWindow(List<transferrableclaim> sent)
         {
             InitializeComponent();
-            _context = context; // Store the DbContext
+            clams = sent;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             //Naviagtes out of the create claim window without creating a claim back to the LecturerViewWindow
             //----------------------------------------------------------------------------------------------------------------------------------------------
-            LecturerViewWindow objViewWindow = new LecturerViewWindow(_context);
+            LecturerViewWindow objViewWindow = new LecturerViewWindow(clams);
             this.Hide();
             objViewWindow.Show();
             //----------------------------------------------------------------------------------------------------------------------------------------------

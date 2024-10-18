@@ -18,23 +18,23 @@
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="2" Grid.Row="1" Background="#FF322D71">
             <Label x:Name="TitleLabel" Content="Title:" HorizontalAlignment="Left" Margin="55,0,0,0" Foreground="White"/>
-            <TextBox TextWrapping="Wrap" Text=" " Width="250" HorizontalAlignment="Left" Margin="55,0,0,0"/>
+            <TextBox x:Name="ClaimTitleTextBox" TextWrapping="Wrap" Text=" " Width="250" HorizontalAlignment="Left" Margin="55,0,0,0"/>
             <Label x:Name="IDLabel" Content="ID:" HorizontalAlignment="Left" Margin="55,0,0,0" Foreground="White"/>
-            <TextBox TextWrapping="Wrap" Text=" " Width="250" HorizontalAlignment="Left" Margin="55,0,0,0"/>
+            <TextBox x:Name="ClaimIDTextBox" TextWrapping="Wrap" Text=" " Width="250" HorizontalAlignment="Left" Margin="55,0,0,0"/>
             <Label x:Name="HourlyRateLabel" Content="Hourly Rate:" HorizontalAlignment="Left" Margin="55,0,0,0" Foreground="White"/>
-            <TextBox TextWrapping="Wrap" Text=" " Width="250" HorizontalAlignment="Left" Margin="55,0,0,0"/>
+            <TextBox x:Name="HourlyRateTextBox" TextWrapping="Wrap" Text=" " Width="250" HorizontalAlignment="Left" Margin="55,0,0,0"/>
             <Label x:Name="HoursWorkedLabel" Content="Hours Worked:" HorizontalAlignment="Left" Margin="55,0,0,0" Foreground="White"/>
-            <TextBox TextWrapping="Wrap" Text=" " Width="250" HorizontalAlignment="Left" Margin="55,0,0,0"/>
+            <TextBox x:Name="HoursWorkedTextBox" TextWrapping="Wrap" Text=" " Width="250" HorizontalAlignment="Left" Margin="55,0,0,0"/>
             <Label x:Name="TotalPayementLabel" Content="Total Payment:" HorizontalAlignment="Left" Margin="55,0,0,0" Foreground="White"/>
-            <TextBox TextWrapping="Wrap" Text=" " Width="250" HorizontalAlignment="Left" Margin="55,0,0,0"/>
+            <TextBox x:Name="PayemntTextBox" TextWrapping="Wrap" Text=" " Width="250" HorizontalAlignment="Left" Margin="55,0,0,0"/>
             <Label x:Name="DateLoggedLabel" Content="Date Logged:" HorizontalAlignment="Left" Margin="55,0,0,0" Foreground="White"/>
-            <TextBox TextWrapping="Wrap" Text=" " Width="250" HorizontalAlignment="Left" Margin="55,0,0,0"/>
+            <TextBox x:Name="DateTextBox" TextWrapping="Wrap" Text=" " Width="250" HorizontalAlignment="Left" Margin="55,0,0,0"/>
             <Label Content="Comments:" HorizontalAlignment="Left" Margin="55,0,0,0" Foreground="White"/>
-            <TextBox TextWrapping="Wrap" Text=" " Width="250" Height="54" VerticalScrollBarVisibility="Visible" HorizontalAlignment="Left" Margin="55,0,0,0"/>
+            <TextBox x:Name="CommentTextBox" TextWrapping="Wrap" Text=" " Width="250" Height="54" VerticalScrollBarVisibility="Visible" HorizontalAlignment="Left" Margin="55,0,0,0"/>
             <Label Content="Status:" HorizontalAlignment="Left" Margin="55,0,0,0" Foreground="White"/>
-            <TextBox TextWrapping="Wrap" Text=" " Width="250" HorizontalAlignment="Left" Margin="55,0,0,0"/>
+            <TextBox x:Name="StatusTextBox" TextWrapping="Wrap" Text=" " Width="250" HorizontalAlignment="Left" Margin="55,0,0,0"/>
             <Label Content="Justification:" HorizontalAlignment="Left" Margin="55,0,0,0" Foreground="White"/>
-            <TextBox TextWrapping="Wrap" Text=" " Width="250" Height="50" VerticalScrollBarVisibility="Visible" HorizontalAlignment="Left" Margin="55,0,0,0"/>
+            <TextBox x:Name="JustificationTextBox" TextWrapping="Wrap" Text=" " Width="250" Height="50" VerticalScrollBarVisibility="Visible" HorizontalAlignment="Left" Margin="55,0,0,0"/>
             <Button Content="Download FIles" Width="250" Margin="55,15,0,0" HorizontalAlignment="Left" Click="Button_Click_1"/>
         </StackPanel>
         <StackPanel Grid.Column="2" Background="#FF10101B">
@@ -51,7 +51,7 @@
             <Rectangle Height="15" Width="100"/>
             <Label x:Name="ClaimsLabel" Content="Claims:" HorizontalAlignment="Center" Foreground="White" FontSize="16"/>
             <Rectangle Height="5" Width="100"/>
-            <ListBox x:Name="ClaimsListBox" Height="410" d:ItemsSource="{d:SampleData ItemCount=5}" HorizontalAlignment="Center" Width="275"/>
+            <ListBox x:Name="ClaimsListBox" Height="410" d:ItemsSource="{d:SampleData ItemCount=5}" HorizontalAlignment="Center" Width="275" SelectionChanged="ClaimsListBox_SelectionChanged"/>
         </StackPanel>
         <StackPanel Grid.Row="1" Background="#FF10101B"/>
         <StackPanel Background="#FF10101B">

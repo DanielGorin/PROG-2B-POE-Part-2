@@ -39,11 +39,11 @@
             <TextBox x:Name="StatusTextBox" TextWrapping="Wrap" Text=" " Width="250" HorizontalAlignment="Left" Margin="55,0,0,0" IsReadOnly="True"/>
             <Label Content="Justification:" HorizontalAlignment="Left" Margin="55,0,0,0" Foreground="White"/>
             <TextBox x:Name="JustificationTextBox" TextWrapping="Wrap" Text=" " Width="250" Height="50" VerticalScrollBarVisibility="Visible" HorizontalAlignment="Left" Margin="55,0,0,0"/>
-            <Button Content="Download FIles" Width="250" Margin="55,15,0,0" HorizontalAlignment="Left"/>
+            <Button x:Name="DownloadButton" Content="Download FIles" Width="250" Margin="55,15,0,0" HorizontalAlignment="Left" Click="Button_Click_1"/>
         </StackPanel>
         <StackPanel Grid.Column="2" Background="#FF10101B" Orientation="Horizontal">
-            <Button Content="Accept" HorizontalAlignment="Left" Width="80" Height="40" FontSize="20" Foreground="#FF126117" FontWeight="Bold" Margin="50,0,0,0" Click="Button_Click"/>
-            <Button Content="Deny" Width="80" Height="40" FontSize="20" Foreground="#FF7F1B1B" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="100,0,50,0"/>
+            <Button x:Name="AcceptButton" Content="Accept" HorizontalAlignment="Left" Width="80" Height="40" FontSize="20" Foreground="#FF126117" FontWeight="Bold" Margin="50,0,0,0" Click="Button_Click"/>
+            <Button x:Name="DenyButton" Content="Deny" Width="80" Height="40" FontSize="20" Foreground="#FF7F1B1B" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="100,0,50,0" Click="DenyButton_Click"/>
         </StackPanel>
         <StackPanel Grid.Column="1" Background="#FF10101B">
             <Label x:Name="CSMSTitle" Content="Manager" Foreground="White" FontSize="36" FontWeight="Bold" HorizontalAlignment="Center"/>

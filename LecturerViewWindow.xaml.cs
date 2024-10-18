@@ -20,18 +20,17 @@ namespace PROG_2B_POE_Part_2
     /// </summary>
     public partial class LecturerViewWindow : Window
     {
-        private readonly AppDbContext _context;
-        public LecturerViewWindow(AppDbContext context)
+        List<transferrableclaim> clams = new List<transferrableclaim>();
+        public LecturerViewWindow(List<transferrableclaim> sent)
         {
             InitializeComponent();
-            _context = context; // Store the DbContext
-            if (_context == null)
+            clams = sent;
+            foreach (var j in clams)
             {
-                MessageBox.Show("Database context is null!", "Null Context", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-            else
-            {
-                MessageBox.Show("Database context is initialized.", "Context Initialized", MessageBoxButton.OK, MessageBoxImage.Information);
+                if (j.Status == "Pending")
+                {
+                    ClaimsListBox.Items.Add(j.DisplayClaim());
+                }
             }
         }
 
@@ -39,7 +38,7 @@ namespace PROG_2B_POE_Part_2
         {
             //Naviagtes to the LecturerCreateWindow
             //----------------------------------------------------------------------------------------------------------------------------------------------
-            LecturerCreateWindow objViewWindow = new LecturerCreateWindow(_context);
+            LecturerCreateWindow objViewWindow = new LecturerCreateWindow(clams);
             this.Hide();
             objViewWindow.Show();
             //----------------------------------------------------------------------------------------------------------------------------------------------
@@ -51,6 +50,32 @@ namespace PROG_2B_POE_Part_2
             //----------------------------------------------------------------------------------------------------------------------------------------------
 
             //----------------------------------------------------------------------------------------------------------------------------------------------
+        }
+
+        private void ClaimsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string sel = "";
+            string subsel = "";
+            int com = 0;
+            int keynum = 0;
+            if (ClaimsListBox.SelectedItem != null)
+            {
+                sel = ClaimsListBox.SelectedItem.ToString();
+                com = sel.IndexOf(",");
+                subsel = sel.Substring(0, com);
+                keynum = int.Parse(subsel);
+            }
+            Populate(clams[keynum - 1]);
+        }
+        public void Populate(transferrableclaim claim)
+        {
+            ClaimIDTextBox.Text = claim.ClaimId.ToString();
+            HourlyRateTextBox.Text = claim.HourlyRate.ToString("F2"); // Format to 2 decimal places
+            HoursWorkedTextBox.Text = claim.HoursWorked.ToString();
+            DateTextBox.Text = claim.DateLogged.ToString("yyyy-MM-dd"); // Format the date
+            CommentTextBox.Text = claim.ClaimantComments;
+            StatusTextBox.Text = claim.Status;
+            PayemntTextBox.Text = claim.amountOwed().ToString("F2"); // Amount owed, formatted to 2 decimal places
         }
     }
 }

@@ -30,25 +30,15 @@ namespace PROG_2B_POE_Part_2
         {
             InitializeComponent();
             clams = sent;
-            foreach (var j in clams)
-            {
-                if (j.Status == "Pending")
-                {
-                    ClaimsListBox.Items.Add(j.DisplayClaim());
-                }
-            }
-        }
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
+            LoadList("Pending");
         }
 
+        int keynum = 0;
         private void ClaimsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             string sel = "";
             string subsel = "";
             int com = 0;
-            int keynum = 0;
             if (ClaimsListBox.SelectedItem != null)
             {
                 sel = ClaimsListBox.SelectedItem.ToString();
@@ -70,6 +60,40 @@ namespace PROG_2B_POE_Part_2
             CommentTextBox.Text = claim.ClaimantComments;
             StatusTextBox.Text = claim.Status;
             PayemntTextBox.Text = claim.amountOwed().ToString("F2"); // Amount owed, formatted to 2 decimal places
+        }
+        public void LoadList(string tus)
+        {
+            foreach (var j in clams)
+            {
+                if (j.Status == tus)
+                {
+                    ClaimsListBox.Items.Add(j.DisplayClaim());
+                }
+            }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            clams[keynum - 1].Status = "Accepted";
+            LoadList("Pending");
+        }
+
+        private void DenyButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (JustificationTextBox.Text == "")
+            {
+                MessageBox.Show("Please enter a justification for your denial in the justification box.", "Denial Required!", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                clams[keynum - 1].Status = "Denied";
+                LoadList("Pending");
+            }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -20,7 +20,6 @@ namespace PROG_2B_POE_Part_2
     public partial class MainWindow : Window
     {
         List<transferrableclaim> claimdata = new List<transferrableclaim>();
-        string x = "win";
         private readonly AppDbContext _context;
         // Default constructor
         public MainWindow()
@@ -46,10 +45,7 @@ namespace PROG_2B_POE_Part_2
                                        claim.ClaimantComments, claim.DateLogged, claim.UploadedFiles, claim.Status);
                 claimdata.Add(claimInfo);
             }
-            //
-            var firstClam = claimdata.FirstOrDefault();
-            MessageBox.Show($"The Claimant Name of the first entry is: {firstClam.ClaimantName}", "First Claimant Name", MessageBoxButton.OK, MessageBoxImage.Information);//test to see that the database is being accessed correctly
-            //x = "success";        
+    
         }
 
 
@@ -77,7 +73,7 @@ namespace PROG_2B_POE_Part_2
             //Navigates to the lecturerViewWindow
             //This button is temporary used to naviagte tot he lecturer window before login and registration functinality has been added
             //------------------------------------------------------------------------------------------------------------------------------------------------
-            LecturerViewWindow objViewWindow = new LecturerViewWindow(_context);
+            LecturerViewWindow objViewWindow = new LecturerViewWindow(claimdata);
             this.Hide();
             objViewWindow.Show();
             //------------------------------------------------------------------------------------------------------------------------------------------------
@@ -88,15 +84,9 @@ namespace PROG_2B_POE_Part_2
             //Navigates to the ManagerViewWindow
             //This button is temporary used to naviagte tot he lecturer window before login and registration functinality has been added
             //------------------------------------------------------------------------------------------------------------------------------------------------
-            //var firstClam = claimdata.FirstOrDefault();
-            //MessageBox.Show($"The Claimant Name of the first entry is: {firstClam.ClaimantName}", "First Claimant Name", MessageBoxButton.OK, MessageBoxImage.Information);
-            MessageBox.Show($"The Claimant Name of the first entry is: {x}", "First Claimant Name", MessageBoxButton.OK, MessageBoxImage.Information);
             ManagerViewWindow objViewWindow = new ManagerViewWindow(claimdata);
             this.Hide();
             objViewWindow.Show();
-            //var managerWindow = ((App)Application.Current)._serviceProvider.GetService<ManagerViewWindow>();
-            //this.Hide();
-            //managerWindow.Show();
             //------------------------------------------------------------------------------------------------------------------------------------------------
         }
     }
